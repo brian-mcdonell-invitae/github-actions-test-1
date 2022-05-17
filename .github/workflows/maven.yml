@@ -15,6 +15,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Run Python Script
+      uses: jannekem/run-python-script-action@v1.2
+      with:
+        script: print("testing python script")
     - uses: actions/checkout@v3
     - name: Set up JDK 17
       uses: actions/setup-java@v3
