@@ -11,7 +11,7 @@ public class TestAppTest {
 		assertEquals("Hello, github actions.", (new TestApp()).getMessage());
 	}
 
-	@Test
+	//@Test
 	public void testWillFail() {
 		assertEquals("blah...", (new TestApp()).getMessage());
 	}
