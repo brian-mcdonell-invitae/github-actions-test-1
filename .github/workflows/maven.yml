@@ -34,6 +34,13 @@ jobs:
         distribution: 'temurin'
         architecture: 'aarch64'
         cache: maven
+    - name: what directory am I in?
+      run: pwd
+    - name: run a shell script in the codebase
+      run: |
+        set -x
+        chmod a+x ./scripts/test1.sh
+        ./scripts/test1.sh ${{ github.run_number }}
     - name: Build with Maven
       run: |
         mvn -B package --file pom.xml
