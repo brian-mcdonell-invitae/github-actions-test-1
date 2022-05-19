@@ -13,7 +13,7 @@ public class TestAppTest {
 
 	//@Test
 	public void testWillFail() {
-		assertEquals("blah...", (new TestApp()).getMessage());
+		assertEquals("blah......", (new TestApp()).getMessage());
 	}
 
 }
