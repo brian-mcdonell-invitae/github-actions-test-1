@@ -49,8 +49,8 @@ jobs:
         echo secret: ${{ secrets.TEST_PASSWORD }}
         pwd
         ls -la
-    - name: Publish Unit Test Results
-      uses: EnricoMi/publish-unit-test-result-action@v1.36
+    #- name: Publish Unit Test Results
+    #  uses: EnricoMi/publish-unit-test-result-action@v1.36
     - uses: actions/upload-artifact@v3
       with:
         name: my-artifact
