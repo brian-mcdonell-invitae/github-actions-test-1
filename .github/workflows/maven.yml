@@ -51,6 +51,8 @@ jobs:
         ls -la
     #- name: Publish Unit Test Results
     #  uses: EnricoMi/publish-unit-test-result-action@v1.36
+    - name: Test Reporter
+      uses: dorny/test-reporter@v1.5.0
     - uses: actions/upload-artifact@v3
       with:
         name: my-artifact
