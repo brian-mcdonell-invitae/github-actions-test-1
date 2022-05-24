@@ -49,8 +49,6 @@ jobs:
         echo secret: ${{ secrets.TEST_PASSWORD }}
         pwd
         ls -la
-    - name: Test Reporter
-      uses: dorny/test-reporter@v1.5.0
     - name: Publish Test Report
       if: ${{ always() }}
       uses: scacap/action-surefire-report@v1
