@@ -1,0 +1,41 @@
+FROM ubuntu:20.04
+
+ARG DEBIAN_FRONTEND=noninteractive
+
+# Install dependencies
+
+RUN apt-get update
+RUN apt update
+
+# TODO: curl, nano, wget, git, java, nodejs
+# TODO: docker, ansible, perl, mvn, awscli, python
+
+RUN apt-get upgrade -y && apt-get install -y wget nano curl git
+RUN apt-get -y install apache2
+RUN apt install -y openjdk-11-jdk
+
+apt-get install -y ca-certificates gnupg lsb-release
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list > /dev/null
+apt-get update
+apt-get install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
+
+# installing node/npm/ng
+RUN curl -fsSL https://deb.nodesource.com/setup_14.x | bash - && apt-get install -y nodejs
+RUN npm install -g @angular/cli
+
+
+# Install apache and write hello world message
+RUN echo 'Hello World!' > /var/www/html/index.html
+
+# Configure apache
+RUN echo '. /etc/apache2/envvars' > /root/run_apache.sh && \
+echo 'mkdir -p /var/run/apache2' >> /root/run_apache.sh && \
+echo 'mkdir -p /var/lock/apache2' >> /root/run_apache.sh && \ 
+echo '/usr/sbin/apache2 -D FOREGROUND' >> /root/run_apache.sh && \ 
+chmod 755 /root/run_apache.sh
+
+EXPOSE 80
+
+CMD /root/run_apache.sh
