@@ -45,3 +45,7 @@ testem.log
 Thumbs.db
 /nbproject/private/
 /docker/ui/dist/
+
+github-workflows
+
+*password*
