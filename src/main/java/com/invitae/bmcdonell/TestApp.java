@@ -7,6 +7,6 @@ public class TestApp {
 	}
 
 	public String getMessage() {
-		return "Hello, github actions.....";
+		return "Hello, github actions..... modified";
 	}
 }
