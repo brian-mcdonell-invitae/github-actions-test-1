@@ -27,7 +27,7 @@ jobs:
     - uses: actions/checkout@v3
     - name: Install dev tools
       run: |
-        apt-get update && apt-get install -y make curl jq xxd uuid-runtime sudo zip
+        sudo apt-get update && sudo apt-get install -y make curl jq xxd uuid-runtime sudo zip
     - name: Run Test
       run: |
         export TEST_TYPE=${{ github.event.inputs.testType }}; make do-test-1
