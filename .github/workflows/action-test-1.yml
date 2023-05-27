@@ -1,0 +1,33 @@
+name: Deploy to DEV
+
+on:
+  workflow_dispatch:
+    inputs:
+      testType:
+        description: 'Test type'
+        required: true
+        default: 'smoke'
+        type: choice
+        options:
+          - smoke
+          - load
+          - stress
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    #runs-on: self-hosted
+    steps:
+    - name: Output Run ID
+      run: echo ${{ github.run_id }}
+    - name: Output Run Number
+      run: echo ${{ github.run_number }}
+    - name: Output Run Attempt
+      run: echo ${{ github.run_attempt }}
+    - uses: actions/checkout@v3
+    - name: Install dev tools
+      run: |
+        apt-get update && apt-get install -y make curl jq xxd uuid-runtime sudo zip
+    - name: Run Test
+      run: |
+        export TEST_TYPE=${{ github.event.inputs.testType }}; make do-test-1
