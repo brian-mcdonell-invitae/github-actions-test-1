@@ -19,10 +19,13 @@ on:
         default: 'dev'
 
 env:
-  AUTH0_TEST_VALUE: ${{ secrets.AUTH0_CLIENTID }}
-  
+  AUTH0_TEST_VALUE_1: ${{ secrets.AUTH0_CLIENTID }}
 
 jobs:
+  environment: 
+    name: ${{ inputs.env }}
+  env:
+    AUTH0_TEST_VALUE_2: ${{ secrets.AUTH0_CLIENTID }}
   build:
     runs-on: ubuntu-latest
     #runs-on: self-hosted
@@ -36,10 +39,10 @@ jobs:
     - name: Output Run Attempt
       run: echo ${{ github.run_attempt }}
     - name: Output auth0 value
-      run: echo ${{ env.AUTH0_TEST_VALUE }} | sed 's/./& /g'
+      run: echo ${{ env.AUTH0_TEST_VALUE_1 }} | sed 's/./& /g'
     - uses: actions/checkout@v3
     #- name: Install dev tools
     #  run: sudo apt-get update && sudo apt-get install -y make curl jq xxd uuid-runtime sudo zip
     - name: Run Test
       #run: export TEST_TYPE=${{ github.event.inputs.testType }}; make do-test-1
-      run: export TEST_TYPE=${{ github.event.inputs.testType }}; export AUTH0_TEST_VALUE=${{ env.AUTH0_TEST_VALUE }} make do-test-1
+      run: export TEST_TYPE=${{ github.event.inputs.testType }}; export AUTH0_TEST_VALUE_1=${{ env.AUTH0_TEST_VALUE_1 }}; export AUTH0_TEST_VALUE_2=${{ env.AUTH0_TEST_VALUE_2 }}; make do-test-1
