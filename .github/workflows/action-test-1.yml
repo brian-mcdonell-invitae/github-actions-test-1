@@ -17,6 +17,11 @@ on:
         description: 'Environment'
         required: true
         default: 'dev'
+      approvers:
+        type: string
+        description: 'Approver(s)\(comma-separated - leave blank to be only yourself)'
+        required: false
+        default: ''
 
 env:
   AUTH0_TEST_VALUE_1: ${{ secrets.AUTH0_CLIENTID }}
