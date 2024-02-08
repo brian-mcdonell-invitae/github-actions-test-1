@@ -16,10 +16,10 @@ on:
         type: environment
         description: 'Environment'
         required: true
-        default: 'DEV'
+        default: 'dev'
 
 env:
-  AUTH0_TEST_VALUE: ${{ secrets.AUTH0_CLIENTID_DEV }}
+  AUTH0_TEST_VALUE: ${{ secrets.AUTH0_CLIENTID }}
 
 jobs:
   build:
