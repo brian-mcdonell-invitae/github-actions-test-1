@@ -12,6 +12,14 @@ on:
           - smoke
           - load
           - stress
+      env:
+        type: environment
+        description: 'Environment'
+        required: true
+        default: 'DEV'
+
+env:
+  AUTH0_TEST_VALUE: ${{ secrets.AUTH0_CLIENTID_DEV }}
 
 jobs:
   build:
@@ -24,10 +32,11 @@ jobs:
       run: echo ${{ github.run_number }}
     - name: Output Run Attempt
       run: echo ${{ github.run_attempt }}
+    - name: Output auth0 value
+      run: echo ${{ envgithub.AUTH0_TEST_VALUE }}
     - uses: actions/checkout@v3
-    - name: Install dev tools
-      run: |
-        sudo apt-get update && sudo apt-get install -y make curl jq xxd uuid-runtime sudo zip
+    #- name: Install dev tools
+    #  run: sudo apt-get update && sudo apt-get install -y make curl jq xxd uuid-runtime sudo zip
     - name: Run Test
-      run: |
-        export TEST_TYPE=${{ github.event.inputs.testType }}; make do-test-1
+      #run: export TEST_TYPE=${{ github.event.inputs.testType }}; make do-test-1
+      run: export TEST_TYPE=${{ github.event.inputs.testType }}; make do-test-1
