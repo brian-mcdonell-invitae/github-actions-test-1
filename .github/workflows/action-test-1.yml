@@ -22,13 +22,13 @@ env:
   AUTH0_TEST_VALUE_1: ${{ secrets.AUTH0_CLIENTID }}
 
 jobs:
-  environment: 
-    name: ${{ inputs.env }}
-  env:
-    AUTH0_TEST_VALUE_2: ${{ secrets.AUTH0_CLIENTID }}
   build:
     runs-on: ubuntu-latest
     #runs-on: self-hosted
+    environment: 
+      name: ${{ inputs.env }}
+    env:
+      AUTH0_TEST_VALUE_2: ${{ secrets.AUTH0_CLIENTID }}
     steps:
     - name: Output environment
       run: echo ${{ github.event.inputs.env }}
