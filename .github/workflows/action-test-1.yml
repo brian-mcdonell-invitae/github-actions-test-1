@@ -33,7 +33,7 @@ jobs:
     - name: Output Run Attempt
       run: echo ${{ github.run_attempt }}
     - name: Output auth0 value
-      run: echo ${{ envgithub.AUTH0_TEST_VALUE }}
+      run: echo ${{ env.AUTH0_TEST_VALUE }}
     - uses: actions/checkout@v3
     #- name: Install dev tools
     #  run: sudo apt-get update && sudo apt-get install -y make curl jq xxd uuid-runtime sudo zip
