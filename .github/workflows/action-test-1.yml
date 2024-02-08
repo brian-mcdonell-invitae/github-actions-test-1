@@ -19,7 +19,7 @@ on:
         default: 'dev'
       approvers:
         type: string
-        description: 'Approver(s)\(comma-separated - leave blank to be only yourself)'
+        description: 'Approver(s)\n(comma-separated - leave blank to be only yourself)<br>test3'
         required: false
         default: ''
 
